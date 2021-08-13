@@ -123,6 +123,15 @@ module Phases = struct
       { context; sentence }
   end
 
+  let jsOutput =
+    let open Utility in
+    Settings.(option ~default:None "js_output"
+      |> CLI.(add (long "js-output"))
+      |> to_string from_string_option (* TODO: ??*)
+      |> convert (Sys.expand ->- some) (*TODO: ??*)
+      |> privilege `System (* TODO: ??*)
+      |> sync)
+
   let dump_lib : out_channel -> unit
     = fun oc ->
     Printf.fprintf oc "lib.ml mappings:\n%!";
@@ -178,6 +187,10 @@ module Phases = struct
     let nenv      = Context.name_environment context in
     let tenv      = Context.typing_environment context in
     let ffi_files = Context.ffi_files context in
+    let _ = match Settings.get jsOutput with
+    | Some filename -> JsOutput.save filename 
+    | None -> ()
+    in 
     Webserver.init (valenv, nenv, tenv) globals ffi_files;
     Evaluate.run result
 
