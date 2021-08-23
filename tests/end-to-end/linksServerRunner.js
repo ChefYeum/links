@@ -22,7 +22,7 @@ module.exports = {
       .spawn(`${LINKS_EXEC} ${linksScriptPath}`,
         [
           "--debug",
-          "--config='linksconfig'",
+          // "--config='linksconfig'",
           linksModulePath ? `--path=${linksModulePath}` : ''
         ],
         {
