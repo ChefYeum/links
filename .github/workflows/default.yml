@@ -552,7 +552,7 @@ jobs:
           apt-get install --yes postgresql-client
 
       - name: Install system dependencies
-        run: sudo apt-get install -y libev-dev
+        run: apt-get install -y libev-dev
         shell: bash
 
       - name: Use OCaml ${{ matrix.ocaml-compiler }}
