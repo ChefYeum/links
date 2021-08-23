@@ -555,6 +555,8 @@ jobs:
         run: apt-get install -y libev-dev
         shell: bash
 
+      - run: apt-get install bwrap
+
       - name: Use OCaml ${{ matrix.ocaml-compiler }}
         uses: ocaml/setup-ocaml@v2
         with:
