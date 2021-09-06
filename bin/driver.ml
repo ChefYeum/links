@@ -188,7 +188,7 @@ module Phases = struct
     let tenv      = Context.typing_environment context in
     let ffi_files = Context.ffi_files context in
     let _ = match Settings.get jsOutput with
-    | Some filename -> JsOutput.save filename 
+    | Some filename -> JsOutput.save filename result.Backend.program 
     | None -> ()
     in 
     Webserver.init (valenv, nenv, tenv) globals ffi_files;
