@@ -187,8 +187,14 @@ module Phases = struct
     let nenv      = Context.name_environment context in
     let tenv      = Context.typing_environment context in
     let ffi_files = Context.ffi_files context in
+    let venv =
+      Env.String.fold
+        (fun name v venv -> Irtojs.VEnv.bind v name venv)
+        Lib.nenv
+        Irtojs.VEnv.empty
+    in
     let _ = match Settings.get jsOutput with
-    | Some filename -> JsOutput.save filename result.Backend.program 
+    | Some filename -> JsOutput.save venv result.Backend.program filename 
     | None -> ()
     in 
     Webserver.init (valenv, nenv, tenv) globals ffi_files;
