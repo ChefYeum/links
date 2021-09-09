@@ -1,0 +1,18 @@
+fun add(x, y) {
+  x + y
+}
+
+fun subtract(x, y) {
+  x - y
+}
+
+fun multiply(x, y) {
+  x * y
+}
+
+fun divide(x, y) {
+  x / y
+}
+
+# Should this print?
+add(1, 2)
