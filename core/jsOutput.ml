@@ -5,7 +5,14 @@ var {
   _yield,
   _yieldCont_Default,
   _yieldCont,
-} = require("./nodelib.js");
+  LINKS,
+  TYPES,
+  LINKEDLIST,
+  _applyCont,
+  _intToString,
+  setZeroTimeout,
+  _print,
+} = require('./nodelib.js');
 " ^ jscode
 
 let save venv program outputFilename = 
