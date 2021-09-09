@@ -1,6 +1,12 @@
+
+
+// SCHEDULER
 var _yieldCount = 0;
 var _yieldGranularity = 60;
 
+// yield: give up control for another "thread" to work.
+// if we're running in an event handler then don't yield (but
+// do throw away the stack periodically instead).
 function _yield(f) {
   ++_yieldCount;
   if (_yieldCount == _yieldGranularity) {
@@ -31,4 +37,13 @@ function _yieldCont_Default(k, arg) {
   }
 }
 
-var _yieldCont = _yieldCont_Default
+// From compiler
+var _yieldCont = _yieldCont_Default;
+
+module.exports = {
+  _yieldCount: _yieldCount,
+  _yieldGranularity: _yieldGranularity,
+  _yield: _yield,
+  _yieldCont_Default: _yieldCont_Default,
+  _yieldCont: _yieldCont,
+};
